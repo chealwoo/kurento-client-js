@@ -22,7 +22,8 @@ URL_BARCODES = URL_VIDEO_FILES + "filter/barcodes.webm";
 URL_FIWARECUT = URL_VIDEO_FILES + "filter/fiwarecut.webm";
 URL_PLATES = URL_VIDEO_FILES + "filter/plates.webm";
 URL_POINTER_DETECTOR = URL_VIDEO_FILES + "filter/pointerDetector.mp4";
-URL_SMALL = URL_VIDEO_FILES + "format/small.webm";
+//URL_SMALL = URL_VIDEO_FILES + "format/small.webm";
+URL_SMALL = "http://10.0.0.12/video/Miss.Granny.webm";
 
 /**
  * Set an assert error and re-start the test so it can fail
@@ -236,7 +237,7 @@ lifecycle = {
     if (ws_uri == undefined) {
       //  var WebSocket = wock(proxy);
       //  ws_uri = new WebSocket();
-      ws_uri = 'ws://127.0.0.1:8888/kurento';
+      ws_uri = 'ws://10.0.0.11:8888/kurento';
     };
 
     if (ws_port == undefined) {
@@ -250,7 +251,7 @@ lifecycle = {
     if (scope == "local") {
       Timeout.factor = parseFloat(QUnit.config.timeout_factor) || 1;
 
-      QUnit.config.testTimeout = 30000 * Timeout.factor;
+      QUnit.config.testTimeout = 3330000 * Timeout.factor;
 
       var options = {
         request_timeout: 5000 * Timeout.factor
@@ -303,7 +304,7 @@ lifecycle = {
                 Timeout.factor = parseFloat(QUnit.config
                   .timeout_factor) || 1;
 
-                QUnit.config.testTimeout = 30000 *
+                QUnit.config.testTimeout = 3330000 *
                   Timeout.factor;
 
                 var options = {

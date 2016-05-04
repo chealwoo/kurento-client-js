@@ -88,8 +88,9 @@ QUnit.asyncTest('End of Stream', function (assert) {
 
   assert.expect(2);
 
+// CL change
   var timeout = new Timeout('"PlayerEndpoint:End of Stream"',
-    10 * 1000, onerror);
+    1000 * 1000, onerror);
 
   function onerror(error) {
     timeout.stop();
@@ -116,6 +117,45 @@ QUnit.asyncTest('End of Stream', function (assert) {
       if (error) return onerror(error);
 
       timeout.start();
+    });
+  })
+  .catch(onerror)
+});
+
+QUnit.asyncTest('End of Stream 2', function (assert) {
+  var self = this;
+
+  assert.expect(2);
+
+// CL change
+  var timeout = new Timeout('"PlayerEndpoint:End of Stream 2"',
+    1000 * 1000, onerror);
+
+  function onerror(error) {
+    timeout.stop();
+    _onerror(error);
+  };
+
+  self.pipeline.create('PlayerEndpoint', {
+    uri: URL_SMALL
+  }, function (error, player) {
+    if (error) return onerror(error);
+
+    player.on('EndOfStream', function (data) {
+      assert.ok(true, 'EndOfStream');
+
+     // timeout.stop();
+
+      QUnit.start();
+    })
+    .catch(onerror)
+
+    return player.play(function (error) {
+      assert.equal(error, undefined, 'playing');
+
+      if (error) return onerror(error);
+
+      //timeout.start();
     });
   })
   .catch(onerror)

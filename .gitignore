@@ -12,3 +12,5 @@ junitResult.xml
 npm-debug.log
 lib-cov/
 reports/
+*.iml
+.idea/
